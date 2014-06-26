@@ -180,7 +180,11 @@ module.exports = function(window, document, jQuery, navigator) {
             if (defer != null) {
               defer.reject(new Error("OAuth object must be initialized"));
             }
-            return callback(new Error("OAuth object must be initialized"));
+            if(typeof callback === 'function'){
+              return callback(new Error("OAuth object must be initialized"));              
+            }else{
+              console.log("OAuth object must be initialized");              
+            }
           }
           if (arguments.length === 2 && typeof opts === 'function') {
             callback = opts;
